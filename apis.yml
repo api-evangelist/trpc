@@ -1,0 +1,41 @@
+aid: trpc
+name: tRPC
+description: >-
+  tRPC is a TypeScript framework for building end-to-end typesafe APIs
+  without code generation or schemas.
+type: Index
+image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+tags:
+  - API Composition
+  - TypeScript
+  - BFF
+url: >-
+  https://raw.githubusercontent.com/api-evangelist/trpc/refs/heads/main/apis.yml
+created: '2026-03-27'
+modified: '2026-03-27'
+specificationVersion: '0.19'
+apis:
+  - aid: trpc:trpc
+    name: tRPC
+    description: >-
+      tRPC is a TypeScript framework for building end-to-end typesafe APIs
+      without code generation or schemas.
+    humanURL: https://trpc.io/
+    tags:
+      - API Composition
+      - TypeScript
+    properties:
+      - type: Documentation
+        url: https://trpc.io/docs
+      - type: Getting Started
+        url: https://trpc.io/docs/quickstart
+common:
+  - type: Website
+    url: https://trpc.io/
+  - type: Documentation
+    url: https://trpc.io/docs
+  - type: GitHub Organization
+    url: https://github.com/trpc
+maintainers:
+  - FN: Kin Lane
+    email: kin@apievangelist.com
