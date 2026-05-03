@@ -1,0 +1,134 @@
+naftiko: "1.0.0-alpha1"
+
+info:
+  label: "tRPC Typesafe API Integration"
+  description: >-
+    Workflow capability for integrating with tRPC-based backends. tRPC enables
+    end-to-end typesafe APIs for TypeScript applications using HTTP as the transport.
+    This capability supports calling tRPC query and mutation procedures via the
+    standard HTTP protocol, enabling AI agents and automation workflows to interact
+    with tRPC servers without requiring TypeScript clients.
+  tags:
+    - tRPC
+    - TypeScript
+    - RPC
+    - Type Safety
+    - Backend Integration
+  created: "2026-05-03"
+  modified: "2026-05-03"
+
+binds:
+  - namespace: env
+    keys:
+      TRPC_BEARER_TOKEN: TRPC_BEARER_TOKEN
+
+capability:
+  consumes:
+    - import: trpc
+      location: ./shared/trpc-api.yaml
+
+  exposes:
+    - type: rest
+      port: 8080
+      namespace: trpc-integration-api
+      description: "REST facade for interacting with tRPC backend servers."
+      resources:
+        - path: /v1/health
+          name: health
+          description: "Server health check"
+          operations:
+            - method: GET
+              name: health-check
+              description: "Check tRPC server health"
+              call: "trpc.health-check"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+        - path: /v1/procedures/{name}
+          name: procedure
+          description: "tRPC procedure proxy"
+          operations:
+            - method: GET
+              name: query-procedure
+              description: "Invoke a tRPC query procedure"
+              call: "trpc.query-procedure"
+              with:
+                procedure: "rest.name"
+                input: "rest.input"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+            - method: POST
+              name: mutation-procedure
+              description: "Invoke a tRPC mutation procedure"
+              call: "trpc.mutation-procedure"
+              with:
+                procedure: "rest.name"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+        - path: /v1/batch
+          name: batch
+          description: "Batch multiple tRPC procedure calls"
+          operations:
+            - method: POST
+              name: batch-procedures
+              description: "Execute multiple procedures at once"
+              call: "trpc.batch-procedures"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+
+    - type: mcp
+      port: 9090
+      namespace: trpc-integration-mcp
+      transport: http
+      description: "MCP server for AI-assisted interaction with tRPC backends."
+      tools:
+        - name: query-procedure
+          description: >-
+            Invoke a tRPC query procedure by path. Queries are read-only
+            and use HTTP GET. The procedure name uses dot notation for
+            nested routers (e.g., 'user.getUser', 'post.list').
+          hints:
+            readOnly: true
+            openWorld: true
+          call: "trpc.query-procedure"
+          with:
+            procedure: "tools.procedure"
+            input: "tools.input"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: mutation-procedure
+          description: >-
+            Invoke a tRPC mutation procedure by path. Mutations cause side
+            effects and use HTTP POST. The procedure name uses dot notation
+            (e.g., 'user.createUser', 'post.delete').
+          hints:
+            readOnly: false
+          call: "trpc.mutation-procedure"
+          with:
+            procedure: "tools.procedure"
+            input: "tools.input"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: batch-procedures
+          description: >-
+            Execute multiple tRPC procedures in a single HTTP request.
+            tRPC clients use batching automatically via httpBatchLink.
+          hints:
+            readOnly: false
+          call: "trpc.batch-procedures"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: health-check
+          description: "Check the health of a tRPC server"
+          hints:
+            readOnly: true
+          call: "trpc.health-check"
+          outputParameters:
+            - type: object
+              mapping: "$."

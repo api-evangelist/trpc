@@ -1,0 +1,37 @@
+{
+  "name": "tRPC Router",
+  "description": "A tRPC router containing typed procedures",
+  "fields": [
+    { "name": "_def", "type": "object", "description": "Internal router definition", "required": true },
+    { "name": "procedures", "type": "map[string,Procedure]", "description": "Named procedures in this router", "required": true },
+    { "name": "nested", "type": "map[string,Router]", "description": "Nested sub-routers", "required": false }
+  ],
+  "nested": {
+    "Procedure": {
+      "description": "A tRPC procedure (query, mutation, or subscription)",
+      "fields": [
+        { "name": "type", "type": "enum[query,mutation,subscription]", "required": true },
+        { "name": "path", "type": "string", "description": "Dot-notation path", "required": true },
+        { "name": "input", "type": "ZodSchema", "description": "Zod input validator", "required": false },
+        { "name": "output", "type": "ZodSchema", "description": "Zod output validator", "required": false },
+        { "name": "meta", "type": "ProcedureMeta", "required": false }
+      ]
+    },
+    "ProcedureMeta": {
+      "description": "Procedure metadata",
+      "fields": [
+        { "name": "openapi", "type": "OpenAPIMeta", "description": "OpenAPI mapping (trpc-openapi)", "required": false }
+      ]
+    },
+    "OpenAPIMeta": {
+      "description": "OpenAPI mapping metadata",
+      "fields": [
+        { "name": "method", "type": "enum[GET,POST,PUT,PATCH,DELETE]", "required": true },
+        { "name": "path", "type": "string", "description": "REST path", "required": true },
+        { "name": "protect", "type": "boolean", "description": "Require auth", "required": false },
+        { "name": "summary", "type": "string", "required": false },
+        { "name": "tags", "type": "array[string]", "required": false }
+      ]
+    }
+  }
+}

@@ -1,0 +1,73 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://trpc.io/schemas/error",
+  "title": "tRPC Error",
+  "description": "A tRPC error response following the TRPC error format",
+  "type": "object",
+  "properties": {
+    "error": {
+      "type": "object",
+      "properties": {
+        "json": {
+          "type": "object",
+          "properties": {
+            "message": {
+              "type": "string",
+              "description": "Human-readable error message"
+            },
+            "code": {
+              "type": "integer",
+              "description": "JSON-RPC error code"
+            },
+            "data": {
+              "type": "object",
+              "properties": {
+                "code": {
+                  "type": "string",
+                  "enum": [
+                    "PARSE_ERROR",
+                    "BAD_REQUEST",
+                    "INTERNAL_SERVER_ERROR",
+                    "NOT_IMPLEMENTED",
+                    "UNAUTHORIZED",
+                    "FORBIDDEN",
+                    "NOT_FOUND",
+                    "METHOD_NOT_SUPPORTED",
+                    "TIMEOUT",
+                    "CONFLICT",
+                    "PRECONDITION_FAILED",
+                    "PAYLOAD_TOO_LARGE",
+                    "UNPROCESSABLE_CONTENT",
+                    "TOO_MANY_REQUESTS",
+                    "CLIENT_CLOSED_REQUEST"
+                  ],
+                  "description": "tRPC error code"
+                },
+                "httpStatus": {
+                  "type": "integer",
+                  "description": "Corresponding HTTP status code"
+                },
+                "stack": {
+                  "type": "string",
+                  "description": "Stack trace (development mode only)"
+                },
+                "path": {
+                  "type": "string",
+                  "description": "The procedure path that threw the error"
+                },
+                "zodError": {
+                  "type": "object",
+                  "description": "Zod validation errors when input validation fails"
+                }
+              },
+              "required": ["code", "httpStatus"]
+            }
+          },
+          "required": ["message", "code", "data"]
+        }
+      },
+      "required": ["json"]
+    }
+  },
+  "required": ["error"]
+}

@@ -1,0 +1,34 @@
+{
+  "description": "Example of calling a tRPC mutation procedure via HTTP POST",
+  "request": {
+    "method": "POST",
+    "url": "https://your-server.example.com/api/trpc/user.createUser",
+    "headers": {
+      "Content-Type": "application/json",
+      "Authorization": "Bearer YOUR_TOKEN"
+    },
+    "body": {
+      "json": {
+        "name": "Bob Smith",
+        "email": "bob@example.com",
+        "role": "user"
+      }
+    }
+  },
+  "response": {
+    "status": 200,
+    "body": {
+      "result": {
+        "data": {
+          "json": {
+            "id": "user_456",
+            "name": "Bob Smith",
+            "email": "bob@example.com",
+            "role": "user",
+            "createdAt": "2026-05-03T12:00:00Z"
+          }
+        }
+      }
+    }
+  }
+}

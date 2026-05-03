@@ -1,0 +1,29 @@
+{
+  "@context": {
+    "@vocab": "https://trpc.io/schema/",
+    "schema": "https://schema.org/",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "code": "https://schema.org/SoftwareSourceCode",
+
+    "Router": "schema:APIReference",
+    "Procedure": "schema:EntryPoint",
+    "Query": "schema:EntryPoint",
+    "Mutation": "schema:EntryPoint",
+    "Subscription": "schema:EntryPoint",
+
+    "type": "schema:additionalType",
+    "path": "schema:urlTemplate",
+    "input": "schema:parameterInput",
+    "output": "schema:result",
+    "meta": "schema:additionalProperty",
+    "method": "schema:httpMethod",
+    "protect": "schema:requiresSubscription",
+    "summary": "schema:abstract",
+    "description": "schema:description",
+    "tags": "schema:keywords",
+    "message": "schema:text",
+    "code": "schema:identifier",
+    "stack": "schema:codeRepository",
+    "httpStatus": "httpStatusCode"
+  }
+}

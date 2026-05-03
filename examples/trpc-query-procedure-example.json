@@ -1,0 +1,27 @@
+{
+  "description": "Example of calling a tRPC query procedure via HTTP GET",
+  "request": {
+    "method": "GET",
+    "url": "https://your-server.example.com/api/trpc/user.getUser?input=%7B%22json%22%3A%7B%22id%22%3A%22user_123%22%7D%7D",
+    "headers": {
+      "Authorization": "Bearer YOUR_TOKEN"
+    },
+    "note": "The input parameter is URL-encoded JSON: {\"json\":{\"id\":\"user_123\"}}"
+  },
+  "response": {
+    "status": 200,
+    "body": {
+      "result": {
+        "data": {
+          "json": {
+            "id": "user_123",
+            "name": "Alice Johnson",
+            "email": "alice@example.com",
+            "role": "admin",
+            "createdAt": "2025-01-15T10:00:00Z"
+          }
+        }
+      }
+    }
+  }
+}

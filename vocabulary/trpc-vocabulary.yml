@@ -1,0 +1,139 @@
+aid: trpc-vocabulary
+name: tRPC Vocabulary
+description: >-
+  Domain vocabulary for the tRPC TypeScript framework covering RPC concepts,
+  type safety, procedure types, router composition, and the HTTP protocol
+  tRPC uses for client-server communication.
+created: '2026-05-03'
+modified: '2026-05-03'
+tags:
+  - tRPC
+  - TypeScript
+  - RPC
+  - API Framework
+
+terms:
+  - term: Procedure
+    definition: >-
+      A typed function on a tRPC router that can be a query, mutation,
+      or subscription. Procedures are the primary building blocks of a
+      tRPC API and are invoked by clients with full type safety.
+    tags:
+      - Core Concepts
+
+  - term: Query
+    definition: >-
+      A tRPC procedure type for read-only operations. Queries map to HTTP
+      GET requests and should not cause side effects. They support caching
+      and request batching.
+    tags:
+      - Procedures
+
+  - term: Mutation
+    definition: >-
+      A tRPC procedure type for write operations that cause side effects.
+      Mutations map to HTTP POST requests. Examples include creating,
+      updating, or deleting data.
+    tags:
+      - Procedures
+
+  - term: Subscription
+    definition: >-
+      A tRPC procedure type for real-time, server-push updates. Subscriptions
+      use WebSockets or Server-Sent Events for bidirectional streaming.
+    tags:
+      - Procedures
+      - Real-Time
+
+  - term: Router
+    definition: >-
+      A collection of related tRPC procedures grouped under a common
+      namespace. Routers can be nested to create hierarchical API structures.
+      The root router is the AppRouter exported from the server.
+    tags:
+      - Core Concepts
+
+  - term: AppRouter
+    definition: >-
+      The root tRPC router exported from the server. The AppRouter type is
+      imported on the client side as a type-only import to enable end-to-end
+      type inference without runtime overhead.
+    tags:
+      - Core Concepts
+      - Type Safety
+
+  - term: initTRPC
+    definition: >-
+      The tRPC initialization function that creates the builder used to
+      define routers and procedures. Called once per application with
+      optional context and meta types.
+    tags:
+      - Core Concepts
+
+  - term: Context
+    definition: >-
+      Per-request data passed to every tRPC procedure, typically including
+      authentication state, database clients, and session information.
+      Created via the createContext function in the server adapter.
+    tags:
+      - Core Concepts
+      - Authentication
+
+  - term: Middleware
+    definition: >-
+      A function that runs before a tRPC procedure and can modify the context,
+      add authorization checks, or perform logging. Applied via `.use()` on
+      a procedure builder.
+    tags:
+      - Middleware
+
+  - term: Input Validation
+    definition: >-
+      tRPC uses Zod (or other validation libraries like Valibot, Yup) for
+      schema-based input validation. Input validators are declared via
+      `.input(schema)` on a procedure.
+    tags:
+      - Validation
+      - Type Safety
+
+  - term: httpBatchLink
+    definition: >-
+      A tRPC client link that automatically batches multiple concurrent
+      procedure calls into a single HTTP request, reducing network overhead.
+    tags:
+      - Client
+      - Performance
+
+  - term: End-to-End Type Safety
+    definition: >-
+      The core tRPC value proposition: TypeScript types flow automatically
+      from server procedure definitions to the client without code generation,
+      providing compile-time safety for API contracts.
+    tags:
+      - Type Safety
+      - Core Concepts
+
+  - term: trpc-openapi
+    definition: >-
+      A community package (now archived) that adds OpenAPI/REST endpoint
+      support to tRPC procedures via metadata annotations. Succeeded by
+      trpc-to-openapi for active maintenance.
+    tags:
+      - OpenAPI
+      - REST
+
+  - term: Adapter
+    definition: >-
+      A tRPC server integration layer that connects tRPC to a specific HTTP
+      framework (Express, Fastify, Next.js, AWS Lambda, Fetch/Edge runtimes).
+    tags:
+      - Adapters
+      - Server
+
+  - term: TRPCError
+    definition: >-
+      The error class used to throw typed errors from tRPC procedures. Accepts
+      a code (UNAUTHORIZED, NOT_FOUND, etc.) and message, automatically mapping
+      to the appropriate HTTP status code.
+    tags:
+      - Error Handling
