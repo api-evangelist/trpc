@@ -40,7 +40,7 @@ apis:
     properties:
       - type: Documentation
         url: https://trpc.io/docs
-      - type: Getting Started
+      - type: GettingStarted
         url: https://trpc.io/docs/quickstart
       - type: GitHubRepository
         url: https://github.com/trpc/trpc
@@ -63,7 +63,7 @@ common:
     url: https://trpc.io/
   - type: Documentation
     url: https://trpc.io/docs
-  - type: GitHub Organization
+  - type: GitHubOrganization
     url: https://github.com/trpc
   - type: GitHubRepository
     url: https://github.com/trpc/trpc
