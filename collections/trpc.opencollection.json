@@ -1,0 +1,104 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "tRPC OpenAPI Example",
+    "version": "11.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Procedures",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Health Check",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://your-server.example.com/api/trpc/health"
+          },
+          "docs": "Returns the health status of the tRPC server. This is a standard unauthenticated endpoint for monitoring and load balancer health checks."
+        },
+        {
+          "info": {
+            "name": "Batch Procedures",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://your-server.example.com/api/trpc/batch",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Execute multiple tRPC procedures in a single HTTP request. tRPC clients automatically batch requests made concurrently using httpBatchLink."
+        },
+        {
+          "info": {
+            "name": "Query Procedure",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://your-server.example.com/api/trpc/:procedure",
+            "params": [
+              {
+                "name": "procedure",
+                "value": "",
+                "type": "path",
+                "description": "The procedure path (e.g., `userRouter.getUser`, `post.list`). Nested routers use dot notation."
+              },
+              {
+                "name": "input",
+                "value": "",
+                "type": "query",
+                "description": "JSON-encoded procedure input"
+              },
+              {
+                "name": "batch",
+                "value": "",
+                "type": "query",
+                "description": "Enables batching mode for this single request"
+              }
+            ]
+          },
+          "docs": "Invoke a tRPC query procedure. Queries are read-only operations and map to HTTP GET requests. Input is passed via the `input` query parameter as a JSON-encoded string."
+        },
+        {
+          "info": {
+            "name": "Mutation Procedure",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://your-server.example.com/api/trpc/:procedure",
+            "params": [
+              {
+                "name": "procedure",
+                "value": "",
+                "type": "path",
+                "description": "The mutation procedure path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Invoke a tRPC mutation procedure. Mutations cause side effects and map to HTTP POST requests. Input is passed in the request body."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

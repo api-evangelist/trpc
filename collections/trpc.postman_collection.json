@@ -1,0 +1,808 @@
+{
+  "item": [
+    {
+      "id": "be3c676d-f0fb-4421-98e3-e4cbe754bed6",
+      "name": "Procedures",
+      "description": {
+        "content": "tRPC procedures exposed as REST endpoints",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "cd06ea73-d083-489c-abde-fdfbed9cbe73",
+          "name": "Health Check",
+          "request": {
+            "name": "Health Check",
+            "description": {
+              "content": "Returns the health status of the tRPC server. This is a standard unauthenticated endpoint for monitoring and load balancer health checks.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "health"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "2b200b4c-be96-433d-ac93-2e9e3387ccff",
+              "name": "Server is healthy",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "health"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"ok\": true\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "b1296c69-640f-4c41-a646-8584cefe460a",
+          "name": "Batch Procedures",
+          "request": {
+            "name": "Batch Procedures",
+            "description": {
+              "content": "Execute multiple tRPC procedures in a single HTTP request. tRPC clients automatically batch requests made concurrently using httpBatchLink.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "batch"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"key_0\": {\n    \"json\": {}\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "7d12aa98-c5b2-4ed1-871e-8e3ff069f99d",
+              "name": "Multi-status batch response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "batch"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"key_0\": {\n    \"json\": {}\n  },\n  \"key_1\": {\n    \"json\": {}\n  },\n  \"key_2\": {\n    \"json\": {}\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Multi-Status (WebDAV) (RFC 4918)",
+              "code": 207,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"result\": {\n      \"data\": {\n        \"json\": {}\n      }\n    }\n  },\n  {\n    \"result\": {\n      \"data\": {\n        \"json\": {}\n      }\n    }\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "4fe17f73-1fd4-48df-bf6e-c322e7dfef5c",
+              "name": "Bad request - invalid input or procedure not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "batch"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"key_0\": {\n    \"json\": {}\n  },\n  \"key_1\": {\n    \"json\": {}\n  },\n  \"key_2\": {\n    \"json\": {}\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"json\": {\n      \"message\": \"string\",\n      \"code\": 7460,\n      \"data\": {\n        \"code\": \"string\",\n        \"httpStatus\": 380,\n        \"stack\": \"string\",\n        \"path\": \"string\"\n      }\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "8a7489e9-0e6c-41b5-b646-0501ef6553d8",
+          "name": "Query Procedure",
+          "request": {
+            "name": "Query Procedure",
+            "description": {
+              "content": "Invoke a tRPC query procedure. Queries are read-only operations and map to HTTP GET requests. Input is passed via the `input` query parameter as a JSON-encoded string.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                ":procedure"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "input",
+                  "value": "<string>",
+                  "description": "JSON-encoded procedure input"
+                },
+                {
+                  "disabled": false,
+                  "key": "batch",
+                  "value": "<string>",
+                  "description": "Enables batching mode for this single request"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "procedure",
+                  "description": "(Required) The procedure path (e.g., `userRouter.getUser`, `post.list`). Nested routers use dot notation."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "9e9246a8-52b4-4d94-8f74-51af1f4e1571",
+              "name": "Procedure result",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ":procedure"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "input",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "batch",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "procedure",
+                      "description": "(Required) The procedure path (e.g., `userRouter.getUser`, `post.list`). Nested routers use dot notation."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"result\": {\n    \"data\": {\n      \"json\": {}\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c4a4e87e-e4c9-4d15-b6fd-6348aa46044a",
+              "name": "Bad request - invalid input or procedure not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ":procedure"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "input",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "batch",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "procedure",
+                      "description": "(Required) The procedure path (e.g., `userRouter.getUser`, `post.list`). Nested routers use dot notation."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"json\": {\n      \"message\": \"string\",\n      \"code\": 7460,\n      \"data\": {\n        \"code\": \"string\",\n        \"httpStatus\": 380,\n        \"stack\": \"string\",\n        \"path\": \"string\"\n      }\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "2cf6489f-b640-4f55-83e4-e0089a0c5a3f",
+              "name": "Unauthorized - protected procedure requires authentication",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ":procedure"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "input",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "batch",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "procedure",
+                      "description": "(Required) The procedure path (e.g., `userRouter.getUser`, `post.list`). Nested routers use dot notation."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"json\": {\n      \"message\": \"string\",\n      \"code\": 7460,\n      \"data\": {\n        \"code\": \"string\",\n        \"httpStatus\": 380,\n        \"stack\": \"string\",\n        \"path\": \"string\"\n      }\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "1106a9af-fa49-4541-b256-62c80711ef90",
+              "name": "Procedure not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ":procedure"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "input",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "batch",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "procedure",
+                      "description": "(Required) The procedure path (e.g., `userRouter.getUser`, `post.list`). Nested routers use dot notation."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"json\": {\n      \"message\": \"string\",\n      \"code\": 7460,\n      \"data\": {\n        \"code\": \"string\",\n        \"httpStatus\": 380,\n        \"stack\": \"string\",\n        \"path\": \"string\"\n      }\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "a5500b37-b222-42f3-8dbc-aea177ef8ca6",
+          "name": "Mutation Procedure",
+          "request": {
+            "name": "Mutation Procedure",
+            "description": {
+              "content": "Invoke a tRPC mutation procedure. Mutations cause side effects and map to HTTP POST requests. Input is passed in the request body.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                ":procedure"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "procedure",
+                  "description": "(Required) The mutation procedure path"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"json\": {}\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "450c68cf-d40c-4fb1-97c1-e03fa0128612",
+              "name": "Procedure result",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ":procedure"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "procedure",
+                      "description": "(Required) The mutation procedure path"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"json\": {}\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"result\": {\n    \"data\": {\n      \"json\": {}\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "0de3ac89-4587-48f3-98c1-8bbb0c178cd8",
+              "name": "Bad request - invalid input or procedure not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ":procedure"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "procedure",
+                      "description": "(Required) The mutation procedure path"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"json\": {}\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"json\": {\n      \"message\": \"string\",\n      \"code\": 7460,\n      \"data\": {\n        \"code\": \"string\",\n        \"httpStatus\": 380,\n        \"stack\": \"string\",\n        \"path\": \"string\"\n      }\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "228b83b8-96fa-4e95-beca-c34dd7e0ffea",
+              "name": "Unauthorized - protected procedure requires authentication",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ":procedure"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "procedure",
+                      "description": "(Required) The mutation procedure path"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"json\": {}\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"json\": {\n      \"message\": \"string\",\n      \"code\": 7460,\n      \"data\": {\n        \"code\": \"string\",\n        \"httpStatus\": 380,\n        \"stack\": \"string\",\n        \"path\": \"string\"\n      }\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "9fec02e6-e604-42e3-ad2b-8b4a5c741bc1",
+      "name": "Router",
+      "description": {
+        "content": "tRPC router metadata",
+        "type": "text/plain"
+      },
+      "item": [],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://your-server.example.com/api/trpc",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "16b73573-64a8-493b-908f-4b1563061598",
+    "name": "tRPC OpenAPI Example",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "This is a representative OpenAPI specification demonstrating how tRPC procedures are exposed as REST endpoints using the trpc-openapi adapter. tRPC itself is a TypeScript framework for building end-to-end typesafe APIs. When combined with trpc-openapi (or trpc-to-openapi), tRPC procedures are mapped to standard HTTP REST endpoints with full OpenAPI documentation.\nThis spec represents the standard HTTP API surface exposed by a tRPC server using the fetch or standalone adapter, following tRPC's HTTP protocol conventions.\n\nContact Support:\n Name: tRPC",
+      "type": "text/plain"
+    }
+  }
+}
