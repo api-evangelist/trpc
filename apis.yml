@@ -67,7 +67,7 @@ common:
     url: https://trpc.io/discord
   - type: Twitter
     url: https://twitter.com/alexdotjs
-  - type: LLMsTxt
+  - type: LlmsText
     url: https://trpc.io/llms.txt
 maintainers:
   - FN: Kin Lane
