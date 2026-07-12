@@ -53,6 +53,10 @@ apis:
       - type: Vocabulary
         url: https://raw.githubusercontent.com/api-evangelist/trpc/refs/heads/main/vocabulary/trpc-vocabulary.yml
 common:
+  - type: DomainSecurity
+    url: security/trpc-domain-security.yml
+  - type: Authentication
+    url: authentication/trpc-authentication.yml
   - type: Website
     url: https://trpc.io/
   - type: Documentation
@@ -69,6 +73,8 @@ common:
     url: https://twitter.com/alexdotjs
   - type: LlmsText
     url: https://trpc.io/llms.txt
+  - url: https://trpc.io/blog/rss.xml
+    type: Blog
 maintainers:
   - FN: Kin Lane
     email: kin@apievangelist.com
