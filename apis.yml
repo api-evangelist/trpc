@@ -53,6 +53,8 @@ apis:
       - type: Vocabulary
         url: https://raw.githubusercontent.com/api-evangelist/trpc/refs/heads/main/vocabulary/trpc-vocabulary.yml
 common:
+  - type: AgenticAccess
+    url: agentic-access/trpc-agentic-access.yml
   - type: DomainSecurity
     url: security/trpc-domain-security.yml
   - type: Authentication
