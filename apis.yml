@@ -6,7 +6,20 @@ description: >-
   runtime dependencies. tRPC v11 supports queries, mutations, and subscriptions via HTTP GET/POST and WebSocket adapters
   for Express, Fastify, Next.js, AWS Lambda, and edge runtimes.
 type: Index
-image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+accessModel:
+  pricing: freemium
+  onboarding: self-serve
+  trial: false
+  try_now: true
+  public: false
+  label: Freemium · Self-serve signup
+  confidence: high
+  source:
+  - plans
+  - authentication
+  generated: '2026-07-22'
+  method: derived
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/trpc.png
 tags:
   - API Composition
   - API Framework
@@ -19,39 +32,37 @@ created: '2026-03-27'
 modified: '2026-05-19'
 specificationVersion: '0.19'
 apis:
-  - aid: trpc:http-api
-    name: tRPC HTTP Protocol
-    description: >-
-      The tRPC HTTP API protocol surface. tRPC servers expose procedures via HTTP GET (queries) and HTTP POST
-      (mutations). Clients use httpBatchLink to batch concurrent calls into single requests. Input is passed via
-      JSON-encoded query parameters (GET) or request bodies (POST). Authentication uses Bearer tokens for protected
-      procedures.
-    humanURL: https://trpc.io/docs/
-    baseURL: https://your-server.example.com/api/trpc
-    tags:
-      - API Framework
-      - HTTP
-      - RPC
-      - TypeScript
-    properties:
-      - type: Documentation
-        url: https://trpc.io/docs
-      - type: GettingStarted
-        url: https://trpc.io/docs/quickstart
-      - type: GitHubRepository
-        url: https://github.com/trpc/trpc
-      - type: OpenAPI
-        url: https://raw.githubusercontent.com/api-evangelist/trpc/refs/heads/main/openapi/trpc-openapi.yml
-      - type: SpectralRules
-        url: https://raw.githubusercontent.com/api-evangelist/trpc/refs/heads/main/rules/trpc-rules.yml
-      - type: JSONSchema
-        url: https://raw.githubusercontent.com/api-evangelist/trpc/refs/heads/main/json-schema/trpc-procedure-schema.json
-      - type: JSONSchema
-        url: https://raw.githubusercontent.com/api-evangelist/trpc/refs/heads/main/json-schema/trpc-error-schema.json
-      - type: JSONLDContext
-        url: https://raw.githubusercontent.com/api-evangelist/trpc/refs/heads/main/json-ld/trpc-context.jsonld
-      - type: Vocabulary
-        url: https://raw.githubusercontent.com/api-evangelist/trpc/refs/heads/main/vocabulary/trpc-vocabulary.yml
+- aid: trpc:trpc-procedures-api
+  name: tRPC Procedures API
+  description: tRPC procedures exposed as REST endpoints
+  humanURL: https://trpc.io/docs/
+  baseURL: https://your-server.example.com/api/trpc
+  tags:
+  - Procedures
+  properties:
+  - type: OpenAPI
+    url: openapi/trpc-procedures-api-openapi.yml
+  - type: Documentation
+    url: https://trpc.io/docs
+  - type: GettingStarted
+    url: https://trpc.io/docs/quickstart
+  - type: GitHubRepository
+    url: https://github.com/trpc/trpc
+  - type: SpectralRules
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/trpc/refs/heads/main/rules/trpc-rules.yml
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/trpc/refs/heads/main/json-schema/trpc-procedure-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/trpc/refs/heads/main/json-schema/trpc-error-schema.json
+  - type: JSONLDContext
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/trpc/refs/heads/main/json-ld/trpc-context.jsonld
+  - type: Vocabulary
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/trpc/refs/heads/main/vocabulary/trpc-vocabulary.yml
 common:
   - type: AgenticAccess
     url: agentic-access/trpc-agentic-access.yml
