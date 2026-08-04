@@ -1,0 +1,262 @@
+openapi: 3.0.3
+info:
+  title: tRPC OpenAPI Example
+  description: >-
+    This is a representative OpenAPI specification demonstrating how tRPC procedures
+    are exposed as REST endpoints using the trpc-openapi adapter. tRPC itself is a
+    TypeScript framework for building end-to-end typesafe APIs. When combined with
+    trpc-openapi (or trpc-to-openapi), tRPC procedures are mapped to standard HTTP
+    REST endpoints with full OpenAPI documentation.
+
+    This spec represents the standard HTTP API surface exposed by a tRPC server
+    using the fetch or standalone adapter, following tRPC's HTTP protocol conventions.
+  version: 11.0.0
+  contact:
+    name: tRPC
+    url: https://trpc.io
+  license:
+    name: MIT
+    url: https://github.com/trpc/trpc/blob/main/LICENSE
+servers:
+  - url: https://your-server.example.com/api/trpc
+    description: tRPC server endpoint
+security:
+  - BearerAuth: []
+tags:
+  - name: Procedures
+    description: tRPC procedures exposed as REST endpoints
+  - name: Router
+    description: tRPC router metadata
+paths:
+  /health:
+    get:
+      summary: Health Check
+      description: >-
+        Returns the health status of the tRPC server. This is a standard
+        unauthenticated endpoint for monitoring and load balancer health checks.
+      operationId: healthCheck
+      tags:
+        - Procedures
+      security: []
+      responses:
+        '200':
+          description: Server is healthy
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  ok:
+                    type: boolean
+                    example: true
+  /batch:
+    post:
+      summary: Batch Procedures
+      description: >-
+        Execute multiple tRPC procedures in a single HTTP request. tRPC clients
+        automatically batch requests made concurrently using httpBatchLink.
+      operationId: batchProcedures
+      tags:
+        - Procedures
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              description: >-
+                A map of procedure call index to the procedure input.
+                Keys are numeric indices (0, 1, 2...) for each procedure.
+              additionalProperties:
+                type: object
+                properties:
+                  json:
+                    description: Procedure input serialized as JSON
+      responses:
+        '207':
+          description: Multi-status batch response
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  oneOf:
+                    - $ref: '#/components/schemas/TRPCSuccessResult'
+                    - $ref: '#/components/schemas/TRPCErrorResult'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+  /{procedure}:
+    get:
+      summary: Query Procedure
+      description: >-
+        Invoke a tRPC query procedure. Queries are read-only operations and
+        map to HTTP GET requests. Input is passed via the `input` query parameter
+        as a JSON-encoded string.
+      operationId: queryProcedure
+      tags:
+        - Procedures
+      parameters:
+        - name: procedure
+          in: path
+          required: true
+          description: >-
+            The procedure path (e.g., `userRouter.getUser`, `post.list`).
+            Nested routers use dot notation.
+          schema:
+            type: string
+        - name: input
+          in: query
+          description: JSON-encoded procedure input
+          schema:
+            type: string
+        - name: batch
+          in: query
+          description: Enables batching mode for this single request
+          schema:
+            type: string
+            enum:
+              - "1"
+      responses:
+        '200':
+          description: Procedure result
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TRPCSuccessResult'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    post:
+      summary: Mutation Procedure
+      description: >-
+        Invoke a tRPC mutation procedure. Mutations cause side effects and
+        map to HTTP POST requests. Input is passed in the request body.
+      operationId: mutationProcedure
+      tags:
+        - Procedures
+      parameters:
+        - name: procedure
+          in: path
+          required: true
+          description: The mutation procedure path
+          schema:
+            type: string
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                json:
+                  description: Procedure input
+      responses:
+        '200':
+          description: Procedure result
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TRPCSuccessResult'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+components:
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer
+      description: Bearer token for protected procedures
+  schemas:
+    TRPCSuccessResult:
+      type: object
+      description: A successful tRPC procedure result
+      properties:
+        result:
+          type: object
+          properties:
+            data:
+              description: The procedure output, serialized as JSON
+              type: object
+              properties:
+                json:
+                  description: The actual return value from the procedure
+    TRPCErrorResult:
+      type: object
+      description: A tRPC procedure error result
+      properties:
+        error:
+          type: object
+          properties:
+            json:
+              type: object
+              properties:
+                message:
+                  type: string
+                  description: Human-readable error message
+                code:
+                  type: integer
+                  description: tRPC error code
+                data:
+                  type: object
+                  properties:
+                    code:
+                      type: string
+                      description: tRPC error type (e.g., NOT_FOUND, UNAUTHORIZED)
+                    httpStatus:
+                      type: integer
+                    stack:
+                      type: string
+                      description: Stack trace (development only)
+                    path:
+                      type: string
+                      description: The procedure path that errored
+    TRPCRouter:
+      type: object
+      description: A tRPC router definition with procedures
+      properties:
+        procedures:
+          type: object
+          additionalProperties:
+            $ref: '#/components/schemas/TRPCProcedure'
+    TRPCProcedure:
+      type: object
+      description: A single tRPC procedure (query, mutation, or subscription)
+      properties:
+        type:
+          type: string
+          enum:
+            - query
+            - mutation
+            - subscription
+        input:
+          type: object
+          description: Zod schema for input validation
+        output:
+          type: object
+          description: Zod schema for output validation
+        meta:
+          type: object
+          description: Procedure metadata including OpenAPI mapping
+  responses:
+    BadRequest:
+      description: Bad request - invalid input or procedure not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/TRPCErrorResult'
+    Unauthorized:
+      description: Unauthorized - protected procedure requires authentication
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/TRPCErrorResult'
+    NotFound:
+      description: Procedure not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/TRPCErrorResult'

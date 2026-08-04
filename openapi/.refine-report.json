@@ -1,0 +1,14 @@
+{
+  "provider": "trpc",
+  "sources": [
+    "trpc-procedures-api-openapi.yml"
+  ],
+  "outputs": [
+    "trpc-procedures-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}
