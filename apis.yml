@@ -64,6 +64,9 @@ apis:
     url: >-
       https://raw.githubusercontent.com/api-evangelist/trpc/refs/heads/main/vocabulary/trpc-vocabulary.yml
 common:
+  - type: License
+    name: MIT
+    url: https://github.com/trpc/trpc/blob/main/LICENSE
   - type: AgenticAccess
     url: agentic-access/trpc-agentic-access.yml
   - type: DomainSecurity
