@@ -30,7 +30,7 @@ tags:
 url: https://raw.githubusercontent.com/api-evangelist/trpc/refs/heads/main/apis.yml
 created: '2026-03-27'
 modified: '2026-05-19'
-specificationVersion: '0.19'
+specificationVersion: '0.23'
 apis:
 - aid: trpc:trpc-procedures-api
   name: tRPC Procedures API
