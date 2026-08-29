@@ -6,6 +6,19 @@ description: >-
   runtime dependencies. tRPC v11 supports queries, mutations, and subscriptions via HTTP GET/POST and WebSocket adapters
   for Express, Fastify, Next.js, AWS Lambda, and edge runtimes.
 type: Index
+deliveryModel:
+  model: self-hosted
+  license: MIT
+  open_source: true
+  commercial: false
+  callable_host: false
+  label: Self-hosted open source · you run it yourself
+  confidence: high
+  source:
+  - license
+  - openapi
+  generated: '2026-08-28'
+  method: derived
 accessModel:
   pricing: freemium
   onboarding: self-serve
@@ -66,6 +79,14 @@ apis:
     url: >-
       https://raw.githubusercontent.com/api-evangelist/trpc/refs/heads/main/vocabulary/trpc-vocabulary.yml
 common:
+  - type: IssueTracker
+    url: https://github.com/trpc/trpc/issues
+  - type: Releases
+    url: https://github.com/trpc/trpc/releases
+  - type: SecurityPolicy
+    url: https://github.com/trpc/trpc/blob/main/SECURITY.md
+  - type: ContributionGuide
+    url: https://github.com/trpc/trpc/blob/main/CONTRIBUTING.md
   - type: License
     name: MIT
     url: https://github.com/trpc/trpc/blob/main/LICENSE
