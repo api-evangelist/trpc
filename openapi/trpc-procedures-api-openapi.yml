@@ -1,9 +1,7 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
   title: tRPC OpenAPI Example Procedures API
-  description: 'This is a representative OpenAPI specification demonstrating how tRPC procedures are exposed as REST endpoints using the trpc-openapi adapter. tRPC itself is a TypeScript framework for building end-to-end typesafe APIs. When combined with trpc-openapi (or trpc-to-openapi), tRPC procedures are mapped to standard HTTP REST endpoints with full OpenAPI documentation.
-
-    This spec represents the standard HTTP API surface exposed by a tRPC server using the fetch or standalone adapter, following tRPC''s HTTP protocol conventions.'
+  description: This is a representative OpenAPI specification demonstrating how tRPC procedures are exposed as REST endpoints using the trpc-openapi adapter.
   version: 11.0.0
   contact:
     name: tRPC
@@ -145,14 +143,14 @@ paths:
           $ref: '#/components/responses/Unauthorized'
 components:
   responses:
-    Unauthorized:
-      description: Unauthorized - protected procedure requires authentication
+    BadRequest:
+      description: Bad request - invalid input or procedure not found
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/TRPCErrorResult'
-    BadRequest:
-      description: Bad request - invalid input or procedure not found
+    Unauthorized:
+      description: Unauthorized - protected procedure requires authentication
       content:
         application/json:
           schema:
@@ -164,19 +162,6 @@ components:
           schema:
             $ref: '#/components/schemas/TRPCErrorResult'
   schemas:
-    TRPCSuccessResult:
-      type: object
-      description: A successful tRPC procedure result
-      properties:
-        result:
-          type: object
-          properties:
-            data:
-              description: The procedure output, serialized as JSON
-              type: object
-              properties:
-                json:
-                  description: The actual return value from the procedure
     TRPCErrorResult:
       type: object
       description: A tRPC procedure error result
@@ -207,6 +192,19 @@ components:
                     path:
                       type: string
                       description: The procedure path that errored
+    TRPCSuccessResult:
+      type: object
+      description: A successful tRPC procedure result
+      properties:
+        result:
+          type: object
+          properties:
+            data:
+              description: The procedure output, serialized as JSON
+              type: object
+              properties:
+                json:
+                  description: The actual return value from the procedure
   securitySchemes:
     BearerAuth:
       type: http
