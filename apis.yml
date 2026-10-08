@@ -79,6 +79,12 @@ apis:
     url: >-
       https://raw.githubusercontent.com/api-evangelist/trpc/refs/heads/main/vocabulary/trpc-vocabulary.yml
 common:
+  - type: Plans
+    url: plans/trpc-plans-pricing.yml
+  - type: RateLimits
+    url: rate-limits/trpc-rate-limits.yml
+  - type: FinOps
+    url: finops/trpc-finops.yml
   - type: IssueTracker
     url: https://github.com/trpc/trpc/issues
   - type: Releases
