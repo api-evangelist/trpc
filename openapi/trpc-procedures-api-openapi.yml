@@ -143,12 +143,6 @@ paths:
           $ref: '#/components/responses/Unauthorized'
 components:
   responses:
-    NotFound:
-      description: Procedure not found
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/TRPCErrorResult'
     Unauthorized:
       description: Unauthorized - protected procedure requires authentication
       content:
@@ -161,20 +155,13 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/TRPCErrorResult'
+    NotFound:
+      description: Procedure not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/TRPCErrorResult'
   schemas:
-    TRPCSuccessResult:
-      type: object
-      description: A successful tRPC procedure result
-      properties:
-        result:
-          type: object
-          properties:
-            data:
-              description: The procedure output, serialized as JSON
-              type: object
-              properties:
-                json:
-                  description: The actual return value from the procedure
     TRPCErrorResult:
       type: object
       description: A tRPC procedure error result
@@ -205,6 +192,19 @@ components:
                     path:
                       type: string
                       description: The procedure path that errored
+    TRPCSuccessResult:
+      type: object
+      description: A successful tRPC procedure result
+      properties:
+        result:
+          type: object
+          properties:
+            data:
+              description: The procedure output, serialized as JSON
+              type: object
+              properties:
+                json:
+                  description: The actual return value from the procedure
   securitySchemes:
     BearerAuth:
       type: http
