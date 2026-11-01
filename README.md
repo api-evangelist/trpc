@@ -1,4 +1,4 @@
-# tRPC (trpc)
+# tRPC
 
 <!-- API-EVANGELIST-PROVENANCE:BEGIN -->
 > ### About this repository
@@ -66,68 +66,157 @@
 
 tRPC is a TypeScript framework for building end-to-end typesafe APIs without code generation or schemas. It leverages TypeScript's type inference to provide full static typesafety and autocompletion between client and server, with zero runtime dependencies. tRPC v11 supports queries, mutations, and subscriptions via HTTP GET/POST and WebSocket adapters for Express, Fastify, Next.js, AWS Lambda, and edge runtimes.
 
-**APIs.json:** [https://raw.githubusercontent.com/api-evangelist/trpc/refs/heads/main/apis.yml](https://raw.githubusercontent.com/api-evangelist/trpc/refs/heads/main/apis.yml)
+**Areas:** API Composition · API Framework · BFF · End-to-End Type Safety · RPC · TypeScript
 
-## Scope
+## tRPC on APIs.io
 
-- **Type:** Index
+Everything profiled for tRPC is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/trpc/](https://apis.io/providers/trpc/)** — or go straight to one of the APIs or properties below.
 
-## Tags
+### APIs (1)
 
-- API Composition
-- API Framework
-- BFF
-- End-to-End Type Safety
-- RPC
-- TypeScript
+- [tRPC Procedures API](https://apis.io/apis/trpc/trpc-procedures-api/) — tRPC procedures exposed as REST endpoints
 
-## Timestamps
+### Published properties
 
-- **Created:** 2026-03-27
-- **Modified:** 2026-05-19
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
 
-## APIs
+#### Agentic access (1)
 
-### tRPC HTTP Protocol
+Which operations an agent can call, which act, and which need a human in the loop.
 
-The tRPC HTTP API protocol surface. tRPC servers expose procedures via HTTP GET (queries) and HTTP POST (mutations). Clients use httpBatchLink to batch concurrent calls into single requests. Input is passed via JSON-encoded query parameters (GET) or request bodies (POST). Authentication uses Bearer tokens for protected procedures.
+- [Trpc Agentic Access](https://apis.io/agentic-access/trpc/trpc-agentic-access/)
 
-- **Human URL:** [https://trpc.io/docs/](https://trpc.io/docs/)
-- **Base URL:** `https://your-server.example.com/api/trpc`
+#### JSON Schema (2)
 
-#### Tags
+The data models the API reads and writes.
 
-- API Framework
-- HTTP
-- RPC
-- TypeScript
+- [tRPC Error](https://apis.io/schemas/trpc/trpc-error/)
+- [tRPC Procedure](https://apis.io/schemas/trpc/trpc-procedure/)
 
-#### Properties
+#### JSON Structure (1)
 
-- [Documentation](https://trpc.io/docs)
-- [Getting Started](https://trpc.io/docs/quickstart)
-- [GitHub Repository](https://github.com/trpc/trpc)
-- [OpenAPI](https://raw.githubusercontent.com/api-evangelist/trpc/refs/heads/main/openapi/trpc-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Spectral Rules](https://raw.githubusercontent.com/api-evangelist/trpc/refs/heads/main/rules/trpc-rules.yml)
-- [JSON Schema](https://raw.githubusercontent.com/api-evangelist/trpc/refs/heads/main/json-schema/trpc-procedure-schema.json) — [JSON Schema](https://json-schema.org/specification)
-- [JSON Schema](https://raw.githubusercontent.com/api-evangelist/trpc/refs/heads/main/json-schema/trpc-error-schema.json) — [JSON Schema](https://json-schema.org/specification)
-- [J S O N L D Context](https://raw.githubusercontent.com/api-evangelist/trpc/refs/heads/main/json-ld/trpc-context.jsonld)
-- [Vocabulary](https://raw.githubusercontent.com/api-evangelist/trpc/refs/heads/main/vocabulary/trpc-vocabulary.yml)
-- [Postman Collection](collections/trpc.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/trpc.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+Data models expressed in JSON Structure.
 
-## Common Properties
+- [Trpc Router Structure](https://apis.io/json-structure/trpc/trpc-router-structure/)
+
+#### JSON-LD (1)
+
+Linked-data contexts for the provider's vocabulary.
+
+- [Trpc Context](https://apis.io/jsonld/trpc/trpc-context/)
+
+#### Vocabulary (1)
+
+The provider's domain terms, defined.
+
+- [tRPC Vocabulary](https://apis.io/vocabularies/trpc/trpc-vocabulary/)
+
+#### Examples (2)
+
+Example requests and responses.
+
+- [Trpc Mutation Procedure Example](https://apis.io/examples/trpc/trpc-mutation-procedure-example/)
+- [Trpc Query Procedure Example](https://apis.io/examples/trpc/trpc-query-procedure-example/)
+
+#### Collections (2)
+
+Postman and Open Collection request collections.
+
+- [tRPC OpenAPI Example](https://apis.io/collections/trpc/open-trpc/)
+- [tRPC OpenAPI Example Procedures API](https://apis.io/collections/trpc/open-trpc-procedures-api/)
+
+#### Governance rules (2)
+
+Spectral rulesets for the provider's contracts.
+
+- [tRPC — jsonschema rules](https://apis.io/rules/trpc/trpc-jsonschema-spectral-rules/)
+- [tRPC API Rules](https://apis.io/rules/trpc/trpc-rules/)
+
+#### Security (2)
+
+Authentication, trust centre, and vulnerability disclosure.
+
+- [Trpc Authentication](https://apis.io/security/trpc/trpc-authentication/)
+- [Trpc Domain Security](https://apis.io/security/trpc/trpc-domain-security/)
+
+#### Plans and pricing (1)
+
+Published plans, tiers and prices.
+
+- [Trpc Plans Pricing](https://apis.io/plans/trpc/trpc-plans-pricing/)
+
+#### Rate limits (1)
+
+Published request limits.
+
+- [Trpc Rate Limits](https://apis.io/rate-limits/trpc/trpc-rate-limits/)
+
+#### FinOps (1)
+
+What the API costs to run, by operation.
+
+- [Trpc Finops](https://apis.io/finops/trpc/trpc-finops/)
+
+## Where to find this API
+
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
 
 - [Website](https://trpc.io/)
 - [Documentation](https://trpc.io/docs)
-- [GitHub Organization](https://github.com/trpc)
-- [GitHub Repository](https://github.com/trpc/trpc)
-- [N P M](https://www.npmjs.com/package/@trpc/server)
-- [Discord](https://trpc.io/discord)
-- [Twitter](https://twitter.com/alexdotjs)
-- [L L Ms Txt](https://trpc.io/llms.txt)
+- [Blog](https://trpc.io/blog/rss.xml)
+- [GitHub](https://github.com/trpc)
 
-## Maintainers
+## API Evangelist rating
 
-**FN:** Kin Lane
-**Email:** kin@apievangelist.com
+**Kin Score 43.9** — developing · rubric 0.25.0 · scored 2026-10-23
+
+| Facet | Score |
+|---|---|
+| Discoverability | 73.2 |
+| Contract quality | 59.3 |
+| Contract governance | 27.3 |
+| Operational transparency | 36.8 |
+| Developer ergonomics | 40.5 |
+| Access clarity | 7.9 |
+
+**Agent readiness 22.1** — agent-aware
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | yes |
+| Agentic Access | derived (partial credit) |
+| Reversibility Documented | — |
+| MCP Server | — |
+| Auth Clarity | bearer (partial credit) |
+| Idempotency | — |
+| Error Semantics | — |
+| OpenAPI Examples | partial |
+| Rate Limit Signal | derived (partial credit) |
+| Event Surface Described | — |
+| Agent Skills | — |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | — |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
+| Pagination Ratio | na |
+| Operation Distinctiveness | distinct |
+
+**Regulatory alignment 16.7** — Horizontal (data, software, accessibility, platform)
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/trpc/](https://apis.io/providers/trpc/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for tRPC: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/trpc/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
